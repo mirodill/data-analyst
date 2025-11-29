@@ -54,7 +54,7 @@ b = arr.flatten() # Ko'p o'lchamli massivni 1D ga aylantirish
 c = arr.T # Transpozitsiya
 d = np.array([[[1,2,3]]])
 e = np.squeeze(d) # Keraksiz 1-o'lchamlarni olib tashlash
-print(e)
+# print(e)
 '''
 | Funksiya        | Vazifasi                          |
 | --------------- | --------------------------------- |
@@ -63,4 +63,117 @@ print(e)
 | `T`             | transpozitsiya (qator ↔ ustun)    |
 | `expand_dims()` | yangi o‘lcham qo‘shish            |
 | `squeeze()`     | 1-o‘lchamlarni olib tashlash      |
+'''
+
+# ------ Matematik funksiyalar ------
+
+# a = np.array([1,2,3,4])
+# b = np.array([5,6,7,8])
+# print("a + b:", a + b)
+# print("a - b:", a - b)
+# print("a * b:", a * b)
+# print("a / b:", a / b)
+# print("a ** 2:", a ** 2)
+
+
+# ------ Statistika ------
+nums = np.array([1,2,3,4,5])
+mean = np.mean(nums) # O'rtacha qiymat Massivdagi barcha sonlarning o‘rtacha qiymatini qaytaradi.
+median = np.median(nums) # Raqamlar tartiblangan holda o‘rtadagi qiymat. Agar juft element bo‘lsa → 2 ta o‘rta qiymatning o‘rtachasi olinadi.
+std = np.std(nums) # Standart og'ish Ma’lumot qanchalik tarqalganini ko‘rsatadi. Qiymatlar o‘rtachadan qanchaga uzoq — shuni o‘lchaydi.
+minn = np.min(nums) # Eng kichik son
+maxx = np.max(nums) # Eng katta son
+per = np.percentile(nums, 50) # 50 percentil
+# print(per)
+'''
+| Funksiya     | Nimani beradi                   |
+| ------------ | ------------------------------- |
+| `mean`       | o‘rtacha qiymat                 |
+| `median`     | o‘rtadagi qiymat                |
+| `std`        | qiymatlar tarqalishi            |
+| `min`        | eng kichik qiymat               |
+| `max`        | eng katta qiymat                |
+| `percentile` | foiz bo‘yicha chegaraviy qiymat |
+'''
+# ------ Agregat funksiyalar ------ 
+
+nums = np.array([1,2,3,4,5])
+summ = np.sum(nums) # Barcha elementlar yig'indisi
+prod = np.prod(nums) # Barcha sonlar ko'paytmasi
+cums = np.cumsum(nums) # Yig'indilar ketma-ketligi
+cump = np.cumprod(nums) # Ko'paytmalar ketma-ketligi
+# print(cump)
+'''
+| Funksiya           | Vazifasi                      | Misol natija |
+| ------------------ | ----------------------------- | ------------ |
+| `np.sum(nums)`     | Barcha elementlar yig‘indisi  | 10           |
+| `np.prod(nums)`    | Barcha elementlar ko‘paytmasi | 24           |
+| `np.cumsum(nums)`  | Har bosqichdagi jamlanma      | `[1 3 6 10]` |
+| `np.cumprod(nums)` | Har bosqichdagi ko‘paytma     | `[1 2 6 24]` |
+'''
+# ------ Massivlarni birlashtirish ------
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+c = np.array([7,8,9])
+conc = np.concatenate([a, b, c]) # Massivlarni qo‘shib bitta massiv qilish
+vstack = np.vstack([a, b]) # Massivlarni pastga qarab, ya’ni vertikal tarzda qo‘shadi. Natija 2D massiv bo‘ladi.
+hstack = np.hstack([a, b]) # Massivlarni yonma-yon, ya’ni horizontal tarzda qo‘shadi.
+# print(hstack)
+A = np.array([[1, 2],
+              [3, 4]])
+
+B = np.array([[5, 6]])
+
+#print(np.vstack([A, B]))     # pastga qo'shish
+#print(np.hstack([A, B.T]))   # yonma-yon qo'shish
+'''
+| Funk­siya       | Ma’nosi                         | Natija turi                |
+| --------------- | ------------------------------- | -------------------------- |
+| **concatenate** | Oddiy qo‘shish                  | 1D yoki mavjud shaklga mos |
+| **vstack**      | Vertikal qo‘shish (ustma-ust)   | 2D massiv                  |
+| **hstack**      | Gorizontal qo‘shish (yonma-yon) | 1D yoki 2D                 |
+'''
+
+# ------ Random ------ 
+#np.random.seed(42) # Tasodifiy sonlarni takrorlanadigan qilish
+# print(np.random.rand(3, 3))
+
+nums = np.random.randint(1, 10, 5)
+# print(nums)
+
+# ------ Mantiqiy operatorlar ------
+arr = np.array([10, 20, 30])
+
+# print(arr > 15)
+# print(arr < 25)
+# print(arr == 20)
+# print(arr != 30)
+
+arr = np.array([10, 20, 30, 40, 50])
+
+# 30 dan katta elementlar
+print(arr[arr > 30])
+
+# 10–40 oralig‘idagi elementlar
+print(arr[(arr >= 10) & (arr <= 40)])
+
+# 40 dan katta mavjudmi?
+print(np.any(arr > 40))
+
+# Barcha elementlar 5 dan katta ekanligini tekshirish
+print(np.all(arr > 5))
+
+# Indekslarni olish
+print(np.where(arr > 25))
+'''
+| Amallar           | Ma’nosi                      |
+| ----------------- | ---------------------------- |
+| `arr > 10`        | Boolean array                |
+| `np.where(shart)` | Shartga mos indekslar        |
+| `np.any(shart)`   | Kamida 1 ta True bo‘lsa True |
+| `np.all(shart)`   | Barchasi True bo‘lsa True    |
+| `&`               | AND                          |
+| `\|`              | OR                           |
+| `~`               | NOT                          |
+| `arr[shart]`      | Filtrlash                    |
 '''
