@@ -1,6 +1,6 @@
-1
-2
-3
-4
-5
-6
+id,name,age,score,city
+1,Ali,20,88,Tashkent
+2,Vali,21,70,Samarkand
+3,Sardor,19,,Bukhara
+4,Hasan,22,95,Tashkent
+5,Olim,20,65,
